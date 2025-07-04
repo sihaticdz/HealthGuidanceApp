@@ -1,0 +1,1045 @@
+/* Custom Fonts (مثال: Cairo) */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+/* --- Root Variables --- */
+:root {
+    --primary-color: #007bff;   /* أزرق داكن للروابط الأساسية والأزرار */
+    --secondary-color: #28a745; /* أخضر للعناصر الثانوية والتأكيد */
+    --accent-color: #ffc107;    /* أصفر للعناصر المميزة (featured) */
+    --text-color-dark: #333;    /* لون النص الأساسي الداكن */
+    --text-color-light: #555;   /* لون النص الثانوي الفاتح */
+    --bg-light: #f8f9fa;        /* خلفية فاتحة */
+    --bg-dark: #343a40;         /* خلفية داكنة (للفوتر مثلاً) */
+    --border-color: #dee2e6;    /* لون الحدود */
+    --card-bg: #fff;            /* خلفية البطاقات */
+}
+
+/* --- Basic Reset & Global Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color-dark);
+    background-color: #f4f7f6; /* لون خلفية خفيف ومريح */
+    direction: rtl; /* لكي يكون الموقع من اليمين لليسار */
+    text-align: right; /* محاذاة النص لليمين افتراضياً */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0; /* Padding for top/bottom */
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3; /* درجة أغمق من الأزرق الأساسي */
+}
+
+ul {
+    list-style: none;
+}
+
+h1, h2, h3 {
+    color: var(--text-color-dark);
+    margin-bottom: 20px;
+    font-weight: 700; /* خط أثقل للعناوين */
+}
+
+h2 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px; /* مسافة للخط السفلي */
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+    bottom: 0; /* تم تعديل الوضع ليكون أسفل العنوان مباشرة */
+    right: 50%;
+    transform: translateX(50%);
+    border-radius: 2px;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.primary-btn:hover {
+    background-color: #0056b3;
+}
+
+.secondary-btn {
+    background-color: #6c757d; /* لون رمادي مناسب للزر الثانوي */
+    color: #fff;
+}
+
+.secondary-btn:hover {
+    background-color: #5a6268;
+}
+.btn.secondary-btn { /* استخدم هذه الفئة لجعله زر حدودي */
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn.secondary-btn:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+/* توحيد الزر الرئيسي CTA */
+.cta-btn {
+    background-color: var(--secondary-color); /* استخدام الأخضر للـ CTA */
+    color: #fff;
+    font-size: 1.1em;
+    padding: 15px 30px;
+}
+
+.cta-btn:hover {
+    background-color: #218838;
+}
+
+/* --- Header --- */
+.main-header {
+    background-color: var(--card-bg); /* استخدام الأبيض لخلفية الهيدر */
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky; /* جعل الهيدر ثابتًا عند التمرير */
+    top: 0;
+    z-index: 1000; /* لضمان ظهوره فوق العناصر الأخرى */
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.main-header .logo img {
+    height: 50px;
+    margin-left: 10px; /* مسافة بين الشعار والنص في RTL */
+    flex-shrink: 0; /* منع الصورة من الانكماش */
+}
+
+.main-header .logo h1 {
+    font-size: 1.8rem;
+    margin: 0; /* إزالة الهامش الافتراضي */
+    color: var(--primary-color);
+    white-space: nowrap; /* منع النص من الالتفاف */
+}
+
+.main-nav ul {
+    display: flex;
+    align-items: center;
+}
+
+.main-nav ul li {
+    margin-left: 25px; /* مسافة بين عناصر القائمة في RTL */
+}
+
+.main-nav ul li:last-child {
+    margin-left: 0; /* إزالة الهامش عن آخر عنصر */
+}
+
+.main-nav ul li a {
+    color: var(--text-color-dark);
+    font-weight: 600;
+    padding: 5px 10px;
+}
+
+/* Hamburger menu toggle */
+.menu-toggle {
+    display: none; /* مخفي افتراضياً على الشاشات الكبيرة */
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--text-color-dark);
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    background: linear-gradient(to top, rgba(0, 123, 255, 0.8), rgba(0, 123, 255, 0.6)), url('hero-bg.jpg') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section .container {
+    display: flex;
+    flex-direction: row-reverse; /* لعكس ترتيب العناصر في RTL */
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center; /* توسيط المحتوى */
+}
+
+.hero-content {
+    flex: 1;
+    min-width: 300px;
+    text-align: right;
+    padding: 20px; /* إضافة بعض الحشو */
+}
+
+.hero-content h2 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: #fff; /* لون أبيض للعنوان على الخلفية الزرقاء */
+    text-align: right; /* تأكيد المحاذاة */
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    color: #e0f2f7; /* لون أفتح للنص على الخلفية الزرقاء */
+    max-width: 700px;
+    margin-right: auto; /* محاذاة لليمين */
+    margin-left: unset; /* إلغاء المحاذاة اليسرى */
+}
+
+.hero-image {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* --- Features Section --- */
+.features-section {
+    padding: 80px 0;
+    background-color: var(--card-bg);
+    text-align: center;
+}
+
+.features-section h2 {
+    color: var(--primary-color);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.feature-item {
+    background-color: var(--bg-light);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: right;
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.feature-item i {
+    font-size: 3.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.feature-item h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: var(--text-color-dark);
+}
+
+.feature-item p {
+    font-size: 1rem;
+    color: var(--text-color-light);
+}
+
+/* --- Subscription Section --- */
+.subscription-section {
+    padding: 80px 0;
+    background-color: #e9f7ee; /* خلفية خضراء فاتحة */
+    text-align: center;
+}
+
+.subscription-section h2 {
+    color: var(--secondary-color);
+}
+
+.subscription-section .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-color-light);
+    margin-bottom: 50px;
+}
+
+.pricing-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.price-card {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+    position: relative;
+    overflow: hidden;
+    display: flex; /* لضمان دفع الزر للأسفل */
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.price-card.featured {
+    border: 3px solid var(--primary-color); /* حدود زرقاء للخطة المميزة */
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.price-card.featured .save {
+    position: absolute;
+    top: 0;
+    left: 0; /* تم تعديل الوضع ليكون في اليسار في RTL */
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-bottom-right-radius: 8px; /* تعديل الزاوية المستديرة */
+    border-bottom-left-radius: 0; /* إزالة الزاوية الأخرى */
+}
+
+.price-card h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.price-card .price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-bottom: 30px;
+}
+
+.price-card ul {
+    margin-bottom: 30px;
+    text-align: right;
+}
+
+.price-card ul li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* لدفع الأيقونة والنص لليمين */
+}
+
+.price-card ul li i {
+    color: var(--secondary-color);
+    margin-right: 0; /* إزالة هامش اليسار */
+    margin-left: 10px; /* إضافة هامش لليسار في RTL */
+}
+
+.price-card .btn {
+    margin-top: auto; /* لدفع الزر للأسفل في بطاقات الأسعار */
+}
+
+/* --- Map Section --- */
+.map-section {
+    padding: 80px 0;
+    background-color: #f4f7f6;
+    text-align: center;
+}
+
+.map-section h2 {
+    color: var(--primary-color);
+}
+
+#map-container {
+    background-color: #e9e9e9;
+    height: 500px;
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color-light);
+    font-size: 1.2rem;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Contact Section --- */
+.contact-section {
+    padding: 80px 0;
+    background-color: var(--card-bg);
+    text-align: center;
+}
+
+.contact-section h2 {
+    color: var(--primary-color);
+}
+
+.contact-section p {
+    font-size: 1.1rem;
+    color: var(--text-color-light);
+    margin-bottom: 40px;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'Cairo', sans-serif; /* للحفاظ على خط القاهرة */
+    direction: rtl; /* For text input */
+    text-align: right;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--bg-dark); /* خلفية داكنة */
+    color: #f4f7f6;
+    padding: 50px 0 20px;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 250px;
+    text-align: right;
+}
+
+.footer-col h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: #f4f7f6;
+}
+
+.footer-col .social-links a {
+    color: #f4f7f6;
+    font-size: 1.8rem;
+    margin-right: 0; /* إزالة الهامش الأيمن */
+    margin-left: 15px; /* إضافة هامش لليسار في RTL */
+}
+
+.footer-col p {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+.footer-col p i {
+    margin-left: 10px; /* مسافة بين الأيقونة والنص */
+    color: var(--secondary-color);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* --- Modal Styling (for registration/login) --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1001; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+    justify-content: center; /* Use flexbox for centering */
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: auto;
+    padding: 40px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 550px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    left: 20px; /* Adjust for RTL (close button on left) */
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.modal-content p {
+    color: var(--text-color-light);
+    margin-bottom: 20px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* General form styling for modal forms */
+.registration-form,
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    text-align: right; /* Ensure text alignment is right */
+}
+
+.registration-form input,
+.registration-form select,
+.login-form input {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    text-align: right;
+}
+
+.registration-form .social-login {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    text-align: center; /* توسيط أزرار التواصل الاجتماعي */
+}
+
+.registration-form .social-login p {
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    color: var(--text-color-light);
+}
+
+.social-btn {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 5px;
+    color: #fff; /* لون النص في أزرار التواصل الاجتماعي */
+}
+
+.social-btn i {
+    margin-left: 10px; /* مسافة بين الأيقونة والنص في RTL */
+    font-size: 1.2rem;
+}
+
+.social-btn.facebook {
+    background-color: #3b5998;
+}
+
+.social-btn.twitter {
+    background-color: #1da1f2;
+}
+
+.social-btn.email {
+    background-color: #ea4335; /* لون أحمر/برتقالي للبريد الإلكتروني (جوجل) */
+}
+
+.registration-form .login-link,
+.login-form .registration-link {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    text-align: center; /* توسيط الروابط */
+}
+
+.registration-form .login-link a,
+.login-form .registration-link a {
+    font-weight: bold;
+}
+
+/* --- Medical File Specific Styles --- */
+#medical-file-dashboard,
+.hidden-section {
+    padding: 60px 0;
+    background-color: var(--bg-light);
+}
+
+#medical-file-dashboard h2 {
+    color: var(--primary-color);
+    margin-bottom: 40px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.dashboard-card {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: right;
+    border-right: 5px solid var(--primary-color); /* حدود لليمين للتركيز */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.dashboard-card h3 {
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* لدفع الأيقونة والنص لليمين */
+}
+
+.dashboard-card h3 i {
+    margin-right: 0; /* إزالة هامش اليمين */
+    margin-left: 10px; /* مسافة بين الأيقونة والنص في RTL */
+    color: var(--accent-color);
+}
+
+.dashboard-card p {
+    margin-bottom: 8px;
+    color: var(--text-color-dark);
+}
+
+.dashboard-card p strong {
+    color: var(--secondary-color);
+}
+
+.dashboard-card ul {
+    margin-top: 15px;
+    padding-right: 20px; /* حشو لليمين لقائمة RTL */
+    list-style: disc; /* استخدام أقراص للنقاط */
+    text-align: right;
+}
+
+.dashboard-card ul li {
+    margin-bottom: 5px;
+    color: var(--text-color-dark);
+}
+
+.status {
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 5px;
+}
+
+.status.healthy {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status.normal {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.status.low {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status.warning {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.dashboard-card .btn {
+    margin-top: 15px;
+    font-size: 0.9em;
+    padding: 8px 15px;
+}
+
+.dashboard-card .upload-btn {
+    background-color: var(--secondary-color); /* استخدام الأخضر لزر التحميل */
+    color: #fff;
+    border: none;
+}
+
+.dashboard-card .upload-btn:hover {
+    background-color: #218838;
+}
+
+/* Hidden Sections for Details (e.g., specific medical records) */
+.hidden-section {
+    display: none; /* Hidden by default, JavaScript will show them */
+}
+
+.lead-text {
+    font-size: 1.1em;
+    color: var(--secondary-color);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.data-display-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: right;
+}
+
+.data-display-grid div {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.data-display-grid div:last-child {
+    border-bottom: none;
+}
+
+.data-display-grid h4 {
+    grid-column: 1 / -1; /* Span across all columns */
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    text-align: right;
+}
+
+#family-members-list {
+    grid-column: 1 / -1;
+    list-style: none;
+    padding-right: 0;
+}
+
+#family-members-list li {
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#family-members-list li:last-child {
+    border-bottom: none;
+}
+
+#family-members-list li a {
+    margin-right: 0; /* إزالة الهامش الأيمن */
+    margin-left: 10px; /* إضافة هامش لليسار في RTL */
+    font-size: 0.9em;
+}
+
+.medical-history-entries,
+.lab-results-list,
+.prescription-list,
+.appointment-list {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.entry-card, .result-item, .prescription-item, .appointment-item {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    border-right: 4px solid var(--accent-color); /* حدود لليمين باللون الأصفر */
+}
+
+.entry-card h4, .prescription-item h4, .appointment-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.entry-card p, .prescription-item p, .appointment-item p, .result-item p {
+    margin-bottom: 5px;
+    color: var(--text-color-dark);
+}
+
+.result-item .view-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--primary-color);
+}
+.result-item .view-link i {
+    margin-right: 0;
+    margin-left: 5px; /* مسافة بين الأيقونة والنص في RTL */
+}
+
+.small-btn {
+    padding: 5px 12px;
+    font-size: 0.85em;
+    margin-top: 10px;
+}
+
+.back-to-dashboard-btn {
+    margin-top: 40px;
+    text-align: center; /* توسيط زر الرجوع */
+    display: block; /* لضمان أخذ المساحة وعمل التوسيط */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .main-nav {
+        display: none; /* Hide navigation on smaller screens */
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger menu */
+    }
+
+    .main-nav.active {
+        display: block;
+        position: absolute;
+        top: 80px; /* Below header */
+        right: 0;
+        background-color: var(--card-bg);
+        width: 100%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        padding-bottom: 15px;
+    }
+
+    .main-nav.active ul {
+        flex-direction: column;
+        padding: 0; /* إزالة الحشو الافتراضي للقائمة */
+    }
+
+    .main-nav.active ul li {
+        margin: 15px 0; /* هامش رأسي بين عناصر القائمة */
+    }
+
+    .hero-content h2 {
+        font-size: 2.8rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .pricing-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .price-card {
+        width: 80%;
+        max-width: 400px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-col {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .footer-col .social-links a {
+        margin: 0 10px; /* توسيط أيقونات السوشيال ميديا */
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header .logo h1 {
+        font-size: 1.5rem;
+    }
+    .main-header .logo img {
+        height: 40px;
+    }
+
+    .hero-section {
+        padding: 80px 0;
+    }
+    .hero-content h2 {
+        font-size: 2.2rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .cta-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    h2 {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+    h2::after {
+        width: 60px;
+    }
+
+    .features-section, .subscription-section, .map-section, .contact-section, footer {
+        padding: 50px 0;
+    }
+
+    .features-section h2, .subscription-section h2, .map-section h2, .contact-section h2 {
+        font-size: 2rem;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr; /* Stack cards on smaller screens */
+    }
+
+    .dashboard-card {
+        padding: 20px;
+    }
+
+    .data-display-grid {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .entry-card, .result-item, .prescription-item, .appointment-item {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header .logo h1 {
+        display: none; /* Hide text on very small screens to save space */
+    }
+    .main-header .logo img {
+        height: 45px;
+    }
+    .hero-content h2 {
+        font-size: 1.8rem;
+    }
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+    .price-card {
+        width: 100%;
+    }
+
+    .modal-content {
+        padding: 25px;
+    }
+    .modal-content h2 {
+        font-size: 1.8rem;
+    }
+    .close-button {
+        font-size: 24px;
+        top: 10px;
+        left: 15px;
+    }
+    .registration-form input,
+    .registration-form select,
+    .login-form input {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    .social-btn {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}

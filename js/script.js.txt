@@ -1,0 +1,263 @@
+// JavaScript لتفعيل قائمة التنقل المتجاوبة (Hamburger Menu)
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+    }
+
+    // إغلاق قائمة التنقل عند النقر على رابط (لتحسين تجربة المستخدم على الجوال)
+    const navLinks = document.querySelectorAll('.main-nav ul li a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (mainNav.classList.contains('active')) {
+                mainNav.classList.remove('active');
+            }
+        });
+    });
+});
+
+// JavaScript لإدارة نافذة التسجيل المنبثقة (Modal)
+const registrationModal = document.getElementById('registrationModal');
+
+function openRegistrationModal() {
+    registrationModal.style.display = 'flex'; // Use flex to center
+}
+
+function closeRegistrationModal() {
+    registrationModal.style.display = 'none';
+}
+
+// إغلاق النافذة عند النقر خارجها
+window.addEventListener('click', (event) => {
+    if (event.target === registrationModal) {
+        closeRegistrationModal();
+    }
+});
+
+// ملء قائمة الولايات (يمكن استدعاء هذه الوظيفة عند تحميل الصفحة)
+function populateWilayas() {
+    const wilayas = [
+        "أدرار", "الشلف", "الأغواط", "أم البواقي", "باتنة", "بجاية", "بسكرة", "بشار", "البليدة", "البويرة",
+        "تمنراست", "تبسة", "تلمسان", "تيارت", "تيزي وزو", "الجزائر", "الجلفة", "جيجل", "سطيف", "سعيدة",
+        "سكيكدة", "سيدي بلعباس", "عنابة", "قالمة", "قسنطينة", "المدية", "مستغانم", "المسيلة", "معسكر",
+        "ورقلة", "وهران", "البيض", "إليزي", "برج بوعريريج", "بومرداس", "الطارف", "تندوف", "تيسمسيلت",
+        "الوادي", "خنشلة", "سوق أهراس", "تيبازة", "ميلة", "عين الدفلى", "النعامة", "عين تموشنت", "غرداية",
+        "غليزان", "تيميمون", "برج باجي مختار", "أولاد جلال", "بني عباس", "عين صالح", "عين قزام", "تقرت",
+        "جانت", "المغير", "المنيعة"
+    ];
+    const wilayaSelect = document.querySelector('.registration-form select');
+    // التأكد من أن wilayaSelect موجود قبل محاولة إضافة الخيارات إليه
+    if (wilayaSelect) {
+        wilayas.forEach(wilaya => {
+            const option = document.createElement('option');
+            option.value = wilaya;
+            option.textContent = wilaya;
+            wilayaSelect.appendChild(option);
+        });
+    } else {
+        console.warn("Element with class 'registration-form select' not found. Wilayas dropdown may not be populated.");
+    }
+}
+
+// استدعاء دالة ملء الولايات عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', populateWilayas);
+
+
+// دمج خرائط جوجل (مثال، يتطلب مفتاح API)
+// ستحتاج إلى الحصول على مفتاح Google Maps API وتضمينه في ملف HTML الخاص بك
+// <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+/*
+function initMap() {
+    const algeriaCenter = { lat: 28.0339, lng: 1.6596 }; // مركز الجزائر
+    const map = new google.maps.Map(document.getElementById('google-map'), {
+        zoom: 5,
+        center: algeriaCenter,
+    });
+
+    // يمكنك إضافة علامات للمستشفيات والعيادات هنا
+    // مثال:
+    // const hospitalMarker = new google.maps.Marker({
+    //      position: { lat: 36.7538, lng: 3.0588 }, // إحداثيات مستشفى في الجزائر العاصمة
+    //      map: map,
+    //      title: 'مستشفى مصطفى باشا',
+    //      icon: 'hospital-icon.png' // أيقونة مخصصة
+    // });
+}
+*/
+
+// وظائف مستقبلية (تتطلب تطويرًا كبيرًا للخلفية):
+// - معالجة تسجيل الدخول / التسجيل
+// ... داخل دالة DOMContentLoaded ...
+const loginForm = document.querySelector('.login-box form');
+
+if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); // منع الإرسال الافتراضي للصفحة
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            // تأكد أن المسار هو '/api/login' بما يتوافق مع الـ Backend
+            const response = await fetch('/api/login', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) { // إذا كان الرد 200 OK (نجاح)
+                alert(data.message + ' توكن: ' + data.token);
+                // هنا يمكن حفظ التوكن (token) في Local Storage أو Session Storage
+                localStorage.setItem('userToken', data.token); // مثال على حفظ التوكن
+                // ثم توجيه المستخدم إلى صفحة الملف الطبي
+                window.location.href = 'medical-file.html'; 
+            } else { // إذا كان الرد خطأ (مثل 401 Unauthorized)
+                alert('خطأ في تسجيل الدخول: ' + data.message);
+            }
+        } catch (error) {
+            console.error('خطأ في الاتصال بالخادم:', error);
+            alert('حدث خطأ أثناء تسجيل الدخول. يرجى المحاولة مرة أخرى.');
+        }
+    });
+}
+// - إدارة الملفات الطبية (التحميل، العرض، التعديل)
+document.addEventListener('DOMContentLoaded', () => {
+    // Get all view details buttons
+    const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+    // Get all back to dashboard buttons
+    const backToDashboardButtons = document.querySelectorAll('.back-to-dashboard-btn');
+    // Get the main dashboard section
+    const dashboardSection = document.getElementById('medical-file-dashboard');
+    // Get all detailed sections
+    const detailedSections = document.querySelectorAll('.hidden-section');
+
+    // Function to show a specific section and hide others
+    const showSection = (sectionId) => {
+        dashboardSection.style.display = 'none'; // Hide the dashboard
+        detailedSections.forEach(section => {
+            if (section.id === sectionId) {
+                section.style.display = 'block'; // Show the target section
+                window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
+            } else {
+                section.style.display = 'none'; // Hide other detailed sections
+            }
+        });
+    };
+
+    // Function to go back to the dashboard
+    const showDashboard = () => {
+        dashboardSection.style.display = 'block'; // Show the dashboard
+        detailedSections.forEach(section => {
+            section.style.display = 'none'; // Hide all detailed sections
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
+    };
+
+    // Add event listeners to "View Details" buttons
+    viewDetailsButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const targetSectionId = event.target.dataset.section + '-details';
+            showSection(targetSectionId);
+        });// في ملف script.js أو في <script> في login.html
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.querySelector('.login-box form');
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // منع الإرسال الافتراضي للصفحة
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/api/login', { // إرسال الطلب إلى الـ Backend
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) { // إذا كان الرد 200 OK
+                    alert(data.message + ' توكن: ' + data.token);
+                    // هنا يمكن حفظ التوكن في Local Storage أو Session Storage
+                    // ثم توجيه المستخدم إلى صفحة الملف الطبي
+                    window.location.href = 'medical-file.html'; 
+                } else {
+                    alert('خطأ في تسجيل الدخول: ' + data.message);
+                }
+            } catch (error) {
+                console.error('خطأ في الاتصال بالخادم:', error);
+                alert('حدث خطأ أثناء تسجيل الدخول. يرجى المحاولة مرة أخرى.');
+            }
+        });
+    }
+});
+    });
+
+    // Add event listeners to "Back to Dashboard" buttons
+    backToDashboardButtons.forEach(button => {
+        button.addEventListener('click', showDashboard);
+    });
+
+    // Example of how to update user data dynamically (in a real app, this comes from backend)
+    const updateUserData = () => {
+        const userName = "جواد بن علي";
+        const lastUpdated = "02 يوليو 2025"; // Current date
+        const userDob = "01/01/1985";
+        const userWilaya = "الجزائر العاصمة";
+
+        document.getElementById('last-updated').textContent = lastUpdated;
+        document.getElementById('user-full-name').textContent = userName;
+        document.getElementById('user-dob').textContent = userDob;
+        document.getElementById('user-wilaya').textContent = userWilaya;
+
+        // Update detailed personal info
+        document.getElementById('detail-full-name').textContent = userName;
+        document.getElementById('detail-dob').textContent = userDob;
+        document.getElementById('detail-wilaya').textContent = userWilaya;
+
+        // Simulate upcoming appointments/current medications
+        const randomAppointment = Math.random() > 0.5 ? "15 يوليو 2025 (متابعة)" : "لا يوجد";
+        const randomMeds = Math.random() > 0.5 ? "باراسيتامول، فيتامين د" : "لا يوجد";
+
+        document.getElementById('upcoming-appointments').textContent = randomAppointment;
+        document.getElementById('current-meds').textContent = randomMeds;
+    };
+
+    updateUserData(); // Call on page load
+
+    // You can add more complex JavaScript here for:
+    // - Handling actual form submissions (needs backend)
+    // - Dynamic loading of lab results/prescriptions from data (needs backend)
+    // - Barcode/image upload functionality (needs backend for processing)
+    // - Real-time notifications for medication reminders (could be client-side initially, but better with backend)
+});
+// - نظام التذكير (بالأدوية والمواعيد)
+// - التكامل مع الذكاء الاصطناعي (لتقديم النصائح الصحية)
+// - نظام الدردشة للاستشارات عن بعد
+// - إدارة حسابات مهنيي الصحة
+// - تحليل البيانات للكشف عن الأوبئة (متقدم جدًا)
+
+// تسجيل Service Worker for PWA capabilities
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+            .then(registration => {
+                console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(error => {
+                console.error('Service Worker registration failed:', error);
+            });
+    });
+}

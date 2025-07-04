@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الطبي الشخصي - نظام المساعدة والتوجيه الصحي</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header"> <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="شعار نظام المساعدة والتوجيه الصحي">
+                <h1>الملف الطبي الشخصي</h1>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav class="main-nav"> <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="#medical-file-dashboard">لوحة التحكم</a></li> <li><a href="#personal-info-details">معلوماتي الشخصية</a></li>
+                    <li><a href="#medical-history-details">التاريخ الطبي</a></li>
+                    <li><a href="#lab-results-details">نتائج التحاليل</a></li>
+                    <li><a href="#prescriptions-details">الوصفات الطبية</a></li>
+                    <li><a href="#appointments-details">المواعيد</a></li>
+                    <li><a href="#">تسجيل الخروج</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="medical-file-dashboard">
+            <div class="container">
+                <h2>مرحباً، <span id="user-greeting-name">[اسم المستخدم هنا]</span>!</h2>
+                <p class="lead-text">هذا هو ملفك الطبي الشامل، لتتبع حالتك الصحية بسهولة.</p>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card overview-card">
+                        <h3><i class="fas fa-heartbeat"></i> نظرة عامة على صحتك</h3>
+                        <p>آخر تحديث: <span id="last-updated">2025-07-02</span></p>
+                        <ul>
+                            <li><strong>الحالة العامة:</strong> <span class="status healthy" id="overall-status">جيدة</span></li>
+                            <li><strong>مواعيد قادمة:</strong> <span id="upcoming-appointments">لا يوجد</span></li>
+                            <li><strong>أدوية حالية:</strong> <span id="current-meds">لا يوجد</span></li>
+                        </ul>
+                        <button class="btn primary-btn view-details-btn" data-section="medical-overview-details">عرض التفاصيل</button>
+                    </div>
+
+                    <div class="dashboard-card info-card">
+                        <h3><i class="fas fa-user"></i> معلوماتي الشخصية</h3>
+                        <p><strong>الاسم الكامل:</strong> <span id="user-full-name">جواد بن علي</span></p>
+                        <p><strong>تاريخ الميلاد:</strong> <span id="user-dob">01/01/1985</span></p>
+                        <p><strong>الولاية:</strong> <span id="user-wilaya">الجزائر العاصمة</span></p>
+                        <button class="btn secondary-btn view-details-btn" data-section="personal-info-details">تعديل المعلومات</button>
+                    </div>
+
+                    <div class="dashboard-card results-card">
+                        <h3><i class="fas fa-flask"></i> نتائج التحاليل</h3>
+                        <p><strong>آخر تحليل:</strong> <span id="latest-test">فحص الدم الشامل (2025-06-15)</span></p>
+                        <p class="result-status">الحالة: <span class="status normal" id="latest-test-status">عادية</span></p>
+                        <button class="btn primary-btn upload-btn"><i class="fas fa-upload"></i> رفع تحليل جديد</button>
+                        <button class="btn secondary-btn view-details-btn" data-section="lab-results-details">عرض جميع التحاليل</button>
+                    </div>
+
+                    <div class="dashboard-card meds-card">
+                        <h3><i class="fas fa-pills"></i> تنبيهات الأدوية</h3>
+                        <p><strong>الدواء القادم:</strong> <span id="next-med">باراسيتامول</span></p>
+                        <p><strong>الموعد:</strong> <span id="next-med-time">اليوم 19:00</span></p>
+                        <button class="btn secondary-btn view-details-btn" data-section="prescriptions-details">إدارة الأدوية</button>
+                    </div>
+
+                    <div class="dashboard-card appointments-card">
+                        <h3><i class="fas fa-calendar-check"></i> المواعيد</h3>
+                        <p><strong>موعدك القادم:</strong> <span id="next-appointment">لا يوجد</span></p>
+                        <p><strong>المكان:</strong> <span id="next-appointment-location">--</span></p>
+                        <button class="btn primary-btn view-details-btn" data-section="appointments-details">عرض المواعيد</button>
+                        <button class="btn secondary-btn">حجز موعد</button>
+                    </div>
+
+                     <div class="dashboard-card history-card">
+                        <h3><i class="fas fa-notes-medical"></i> التاريخ الطبي</h3>
+                        <p><strong>عدد السجلات:</strong> <span id="history-record-count">5</span></p>
+                        <p><strong>آخر سجل:</strong> <span id="latest-history-entry">زيارة طبيب عام (2025-05-10)</span></p>
+                        <button class="btn primary-btn view-details-btn" data-section="medical-history-details">عرض التاريخ الكامل</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="medical-overview-details" class="hidden-section">
+            <div class="container">
+                <h2>نظرة عامة على صحتك</h2>
+                <p class="lead-text">تفاصيل شاملة عن حالتك الصحية العامة وأبرز المؤشرات.</p>
+                <div class="data-display-grid">
+                    <div><strong>آخر زيارة للطبيب:</strong> <span>2025-06-20</span></div>
+                    <div><strong>الضغط:</strong> <span>120/80 <span class="status normal">عادي</span></span></div>
+                    <div><strong>مستوى السكر:</strong> <span>95 mg/dL <span class="status healthy">جيد</span></span></div>
+                    <div><strong>الوزن:</strong> <span>75 كجم</span></div>
+                    <div><strong>الطول:</strong> <span>175 سم</span></div>
+                    <div><strong>مؤشر كتلة الجسم (BMI):</strong> <span>24.5 <span class="status normal">عادي</span></span></div>
+                    <h4>الحساسيات:</h4>
+                    <ul id="allergies-list">
+                        <li>لا توجد حساسية معروفة.</li>
+                        </ul>
+                    <h4>الأمراض المزمنة:</h4>
+                    <ul id="chronic-diseases-list">
+                        <li>لا يوجد.</li>
+                        </ul>
+                </div>
+                <button class="btn secondary-btn back-to-dashboard-btn">العودة للوحة التحكم</button>
+            </div>
+        </section>
+
+        <section id="personal-info-details" class="hidden-section">
+            <div class="container">
+                <h2>معلوماتي الشخصية التفصيلية</h2>
+                <div class="data-display-grid">
+                    <div><strong>الاسم الكامل:</strong> <span id="detail-full-name">جواد بن علي</span></div>
+                    <div><strong>تاريخ الميلاد:</strong> <span id="detail-dob">01/01/1985</span></div>
+                    <div><strong>الجنس:</strong> <span id="detail-gender">ذكر</span></div>
+                    <div><strong>الولاية:</strong> <span id="detail-wilaya">الجزائر العاصمة</span></div>
+                    <div><strong>فصيلة الدم:</strong> <span id="detail-blood-type">A+</span></div>
+                    <div><strong>رقم الهاتف:</strong> <span id="detail-phone">+213 5xx xxx xxx</span></div>
+                    <div><strong>البريد الإلكتروني:</strong> <span id="detail-email">jawad.b.ali@example.com</span></div>
+                    <h4>أفراد العائلة:</h4>
+                    <ul id="family-members-list">
+                        <li>أحمد بن علي (ابن) - ملف <a href="#" class="small-link" data-member-id="1">عرض</a></li>
+                        <li>ليلى بن علي (زوجة) - ملف <a href="#" class="small-link" data-member-id="2">عرض</a></li>
+                    </ul>
+                    <button class="btn primary-btn">إضافة فرد عائلة</button>
+                    <button class="btn secondary-btn back-to-dashboard-btn">العودة للوحة التحكم</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="medical-history-details" class="hidden-section">
+            <div class="container">
+                <h2>التاريخ الطبي</h2>
+                <div class="medical-history-entries">
+                    <div class="entry-card">
+                        <h4>زيارة طبيب عام - 10/05/2025</h4>
+                        <p><strong>التشخيص:</strong> التهاب في الحلق.</p>
+                        <p><strong>العلاج:</strong> مضاد حيوي (أموكسيسيلين) لمدة 7 أيام.</p>
+                        <p><strong>ملاحظات:</strong> تحسن ملحوظ بعد 3 أيام.</p>
+                        <button class="btn secondary-btn small-btn">عرض التفاصيل</button>
+                    </div>
+                    <div class="entry-card">
+                        <h4>فحص دوري - 01/03/2025</h4>
+                        <p><strong>التشخيص:</strong> صحة جيدة.</p>
+                        <p><strong>التوصيات:</strong> الحفاظ على نمط حياة صحي.</p>
+                        <button class="btn secondary-btn small-btn">عرض التفاصيل</button>
+                    </div>
+                </div>
+                <button class="btn primary-btn">إضافة سجل طبي جديد</button>
+                <button class="btn secondary-btn back-to-dashboard-btn">العودة للوحة التحكم</button>
+            </div>
+        </section>
+
+        <section id="lab-results-details" class="hidden-section">
+            <div class="container">
+                <h2>نتائج التحاليل</h2>
+                <div class="lab-results-list">
+                    <div class="result-item">
+                        <p><strong>فحص دم شامل</strong> - تاريخ: 15/06/2025</p>
+                        <p><strong>الحالة:</strong> <span class="status normal">عادية</span></p>
+                        <a href="#" class="view-link" target="_blank"><i class="fas fa-file-pdf"></i> عرض التقرير (PDF)</a>
+                        <button class="btn secondary-btn small-btn"><i class="fas fa-image"></i> عرض الصورة</button>
+                    </div>
+                    <div class="result-item">
+                        <p><strong>تحليل فيتامين د</strong> - تاريخ: 05/04/2025</p>
+                        <p><strong>الحالة:</strong> <span class="status low">منخفض قليلاً</span></p>
+                        <a href="#" class="view-link" target="_blank"><i class="fas fa-file-pdf"></i> عرض التقرير (PDF)</a>
+                        <button class="btn secondary-btn small-btn"><i class="fas fa-image"></i> عرض الصورة</button>
+                    </div>
+                </div>
+                <button class="btn primary-btn upload-btn"><i class="fas fa-upload"></i> رفع تحليل جديد</button>
+                <button class="btn secondary-btn back-to-dashboard-btn">العودة للوحة التحكم</button>
+            </div>
+        </section>
+
+        <section id="prescriptions-details" class="hidden-section">
+            <div class="container">
+                <h2>الوصفات الطبية</h2>
+                <div class="prescription-list">
+                    <div class="prescription-item">
+                        <h4>أموكسيسيلين 500mg</h4>
+                        <p><strong>الجرعة:</strong> حبة واحدة كل 8 ساعات</p>
+                        <p><strong>المدة:</strong> 7 أيام</p>
+                        <p><strong>تاريخ البدء:</strong> 10/05/2025</p>
+                        <button class="btn secondary-btn small-btn">تعديل التنبيه</button>
+                    </div>
+                </div>
+                <button class="btn primary-btn">إضافة وصفة جديدة</button>
+                <button class="btn secondary-btn back-to-dashboard-btn">العودة للوحة التحكم</button>
+            </div>
+        </section>
+
+        <section id="appointments-details" class="hidden-section">
+            <div class="container">
+                <h2>المواعيد الطبية</h2>
+                <div class="appointment-list">
+                    <div class="appointment-item">
+                        <h4>موعد متابعة - د. كريم محمد</h4>
+                        <p><strong>التاريخ:</strong> 15/07/2025</p>
+                        <p><strong>الوقت:</strong> 10:00 صباحاً</p>
+                        <p><strong>المكان:</strong> عيادة الأمل، الجزائر العاصمة</p>
+                        <button class="btn secondary-btn small-btn">إلغاء الموعد</button>
+                    </div>
+                </div>
+                <button class="btn primary-btn">حجز موعد جديد</button>
+                <button class="btn secondary-btn back-to-dashboard-btn">العودة للوحة التحكم</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>حول النظام</h3>
+                <p>نظام متكامل للمساعدة والتوجيه الصحي، يهدف إلى تسهيل إدارة ملفك الطبي وتتبع صحتك.</p>
+            </div>
+            <div class="footer-col">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="#features">المميزات</a></li>
+                    <li><a href="#pricing">الاشتراكات</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>تواصل معنا</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 شارع الأمل، الجزائر</p>
+                <p><i class="fas fa-phone-alt"></i> +213 7xx xxx xxx</p>
+                <p><i class="fas fa-envelope"></i> info@healthsystem.com</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 نظام المساعدة والتوجيه الصحي. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="js/medical-file-script.js"></script>
+</body>
+</html>

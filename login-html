@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - نظام المساعدة والتوجيه الصحي</title>
+    <link rel="stylesheet" href="style.css"> <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS خاص بصفحة تسجيل الدخول يمكن وضعه هنا أو في ملف style.css */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to left, #e0f2f7, #c1e4f3);
+            padding: 20px;
+        }
+
+        .login-box {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .login-box .logo-small {
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .login-box h2 {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            position: relative; /* لإزالة الـ after من الـ h2 الرئيسي */
+        }
+        
+        .login-box h2::after {
+            content: none; /* إزالة الخط السفلي من عنوان تسجيل الدخول */
+        }
+
+        .login-box .form-group {
+            margin-bottom: 25px;
+            text-align: right;
+        }
+
+        .login-box label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--dark-bg);
+            font-size: 1.1em;
+        }
+
+        .login-box input[type="email"],
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1em;
+            direction: ltr; /* لضمان كتابة البريد وكلمة المرور بشكل صحيح */
+            text-align: left; /* لضمان أن النص يبدأ من اليسار */
+        }
+
+        .login-box .btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .login-box .forgot-password,
+        .login-box .create-account {
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+
+        .login-box .social-login {
+            margin-top: 30px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .login-box .social-login p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .login-box .social-icons a {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            border-radius: 50%;
+            margin: 0 8px;
+            font-size: 1.5em;
+            color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .login-box .social-icons a:hover {
+            transform: translateY(-3px);
+        }
+
+        .login-box .social-icons .facebook { background-color: #3b5998; }
+        .login-box .social-icons .twitter { background-color: #00acee; }
+        .login-box .social-icons .google { background-color: #db4437; } /* يمكن استخدام أيقونة جوجل للميل */
+
+        @media (max-width: 480px) {
+            .login-box {
+                padding: 25px;
+            }
+            .login-box h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <img src="logo.png" alt="شعار النظام" class="logo-small">
+            <h2>تسجيل الدخول</h2>
+            <form action="#" method="POST"> <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> البريد الإلكتروني أو اسم المستخدم</label>
+                    <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني أو اسم المستخدم" required>
+                </div>
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> كلمة المرور</label>
+                    <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" required>
+                </div>
+                <button type="submit" class="btn primary-btn">تسجيل الدخول</button>
+            </form>
+            <p class="forgot-password"><a href="#">هل نسيت كلمة المرور؟</a></p>
+            <p class="create-account">ليس لديك حساب؟ <a href="register.html">إنشاء حساب جديد</a></p>
+
+            <div class="social-login">
+                <p>أو سجل الدخول عبر:</p>
+                <div class="social-icons">
+                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="google"><i class="fab fa-google"></i></a> </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

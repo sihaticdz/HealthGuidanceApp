@@ -1,0 +1,116 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // Get all view details buttons
+    const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+    // Get all back to dashboard buttons
+    const backToDashboardButtons = document.querySelectorAll('.back-to-dashboard-btn');
+    // Get the main dashboard section
+    const dashboardSection = document.getElementById('medical-file-dashboard');
+    // Get all detailed sections
+    const detailedSections = document.querySelectorAll('.hidden-section');
+
+    // Function to show a specific section and hide others
+    const showSection = (sectionId) => {
+        dashboardSection.style.display = 'none'; // Hide the dashboard
+        detailedSections.forEach(section => {
+            if (section.id === sectionId) {
+                section.style.display = 'block'; // Show the target section
+                window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
+            } else {
+                section.style.display = 'none'; // Hide other detailed sections
+            }
+        });
+    };
+
+    // Function to go back to the dashboard
+    const showDashboard = () => {
+        dashboardSection.style.display = 'block'; // Show the dashboard
+        detailedSections.forEach(section => {
+            section.style.display = 'none'; // Hide all detailed sections
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
+    };
+
+    // Add event listeners to "View Details" buttons
+    viewDetailsButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const targetSectionId = event.target.dataset.section + '-details';
+            showSection(targetSectionId);
+        });// في ملف script.js أو في <script> في login.html
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.querySelector('.login-box form');
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // منع الإرسال الافتراضي للصفحة
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/api/login', { // إرسال الطلب إلى الـ Backend
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) { // إذا كان الرد 200 OK
+                    alert(data.message + ' توكن: ' + data.token);
+                    // هنا يمكن حفظ التوكن في Local Storage أو Session Storage
+                    // ثم توجيه المستخدم إلى صفحة الملف الطبي
+                    window.location.href = 'medical-file.html'; 
+                } else {
+                    alert('خطأ في تسجيل الدخول: ' + data.message);
+                }
+            } catch (error) {
+                console.error('خطأ في الاتصال بالخادم:', error);
+                alert('حدث خطأ أثناء تسجيل الدخول. يرجى المحاولة مرة أخرى.');
+            }
+        });
+    }
+
+    // ... باقي أكواد JavaScript لديك ...
+});
+    });
+
+    // Add event listeners to "Back to Dashboard" buttons
+    backToDashboardButtons.forEach(button => {
+        button.addEventListener('click', showDashboard);
+    });
+
+    // Example of how to update user data dynamically (in a real app, this comes from backend)
+    const updateUserData = () => {
+        const userName = "جواد بن علي";
+        const lastUpdated = "02 يوليو 2025"; // Current date
+        const userDob = "01/01/1985";
+        const userWilaya = "الجزائر العاصمة";
+
+        document.getElementById('last-updated').textContent = lastUpdated;
+        document.getElementById('user-full-name').textContent = userName;
+        document.getElementById('user-dob').textContent = userDob;
+        document.getElementById('user-wilaya').textContent = userWilaya;
+
+        // Update detailed personal info
+        document.getElementById('detail-full-name').textContent = userName;
+        document.getElementById('detail-dob').textContent = userDob;
+        document.getElementById('detail-wilaya').textContent = userWilaya;
+
+        // Simulate upcoming appointments/current medications
+        const randomAppointment = Math.random() > 0.5 ? "15 يوليو 2025 (متابعة)" : "لا يوجد";
+        const randomMeds = Math.random() > 0.5 ? "باراسيتامول، فيتامين د" : "لا يوجد";
+
+        document.getElementById('upcoming-appointments').textContent = randomAppointment;
+        document.getElementById('current-meds').textContent = randomMeds;
+    };
+
+    updateUserData(); // Call on page load
+
+    // You can add more complex JavaScript here for:
+    // - Handling actual form submissions (needs backend)
+    // - Dynamic loading of lab results/prescriptions from data (needs backend)
+    // - Barcode/image upload functionality (needs backend for processing)
+    // - Real-time notifications for medication reminders (could be client-side initially, but better with backend)
+});

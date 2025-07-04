@@ -1,0 +1,57 @@
+package com.medguidance.dz.medguidancebackend.controller;
+
+import com.medguidance.dz.medguidancebackend.model.User;
+import com.medguidance.dz.medguidancebackend.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; // سنستخدمها لتشفير كلمة المرور
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController // تشير إلى أن هذا الكلاس هو REST Controller
+@RequestMapping("/api/auth") // جميع نقاط النهاية في هذا الكنترولر ستبدأ بـ /api/auth
+public class UserController {
+
+    @Autowired // يقوم Spring بحقن UserRepository هنا تلقائياً
+    private UserRepository userRepository;
+
+    @Autowired // ستحتاج لإضافة هذه dependency لاحقاً إذا لم تكن موجودة
+    private BCryptPasswordEncoder passwordEncoder; // لتشفير كلمات المرور
+
+    // نقطة نهاية لتسجيل مستخدم جديد
+    @PostMapping("/register") // هذا يعني أن الطلبات من نوع POST على /api/auth/register ستصل إلى هذه الدالة
+    public ResponseEntity<?> registerUser(@RequestBody User user) {
+        // التحقق مما إذا كان البريد الإلكتروني موجوداً بالفعل
+        if (userRepository.existsByEmail(user.getEmail())) {
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("message", "Email is already in use!");
+            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        }
+
+        // تشفير كلمة المرور قبل حفظها
+        user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash())); // هنا نفترض أن user.getPasswordHash() يحمل كلمة المرور الخام
+
+        // تعيين الأدوار الافتراضية إذا لم تكن محددة
+        if (user.getRole() == null || user.getRole().isEmpty()) {
+            user.setRole("PATIENT"); // الدور الافتراضي هو مريض
+        }
+
+        // تعيين وقت الإنشاء والتحديث
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
+
+        User savedUser = userRepository.save(user);
+        return new ResponseEntity<>(savedUser, HttpStatus.CREATED); // إرجاع المستخدم الذي تم حفظه مع حالة 201 Created
+    }
+
+    // نقطة نهاية لجلب كل المستخدمين (للتجربة، سيتم حمايتها لاحقاً)
+    @GetMapping("/users")
+    public ResponseEntity<Iterable<User>> getAllUsers() {
+        Iterable<User> users = userRepository.findAll();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+}

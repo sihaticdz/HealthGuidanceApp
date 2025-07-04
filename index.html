@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام المساعدة والتوجيه الصحي</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="your-logo.png" alt="شعار نظام المساعدة والتوجيه الصحي">
+                <h1>نظام المساعدة والتوجيه الصحي</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#features">ميزاتنا</a></li>
+                    <li><a href="#map">الخرائط</a></li>
+                    <li><a href="#subscription">الاشتراك</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                    <li><a href="#" class="btn primary-btn" onclick="openLoginOrRegistrationModal('login')">تسجيل الدخول</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>رفيقك الصحي في كل خطوة</h2>
+                    <p>احصل على إرشادات طبية موثوقة، ملفك الصحي الشخصي والعائلي، وتوجيهات لمقدمي الرعاية الصحية في الجزائر.</p>
+                    <button class="btn cta-btn" onclick="openRegistrationModal()">ابدأ الآن مجانًا (30 يومًا)</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2>ميزات نظامنا</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-file-medical"></i>
+                        <h3>ملفك الطبي الشامل</h3>
+                        <p>ملف طبي شخصي وعائلي، مع إمكانية استقبال نتائج التحاليل عبر الصور أو الباركود.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-globe-africa"></i>
+                        <h3>إرشادات محلية وعالمية</h3>
+                        <p>توجيهات طبية وفق برامج منظمة الصحة العالمية ووزارة الصحة الجزائرية، مع دعم 58 ولاية.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>تحديد مواقع المؤسسات الصحية</h3>
+                        <p>نظام خرائط لتحديد المستشفيات، العيادات، ومكاتب الأطباء الخاصة في جميع أنحاء الجزائر.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-bell"></i>
+                        <h3>تذكير بالمواعيد والأدوية</h3>
+                        <p>تنبيهات مخصصة لتناول الدواء ومواعيد زيارة الأطباء.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-robot"></i>
+                        <h3>متابعة صحية بالذكاء الاصطناعي</h3>
+                        <p>سجل حالتك الصحية اليومية واحصل على نصائح وتوجيهات ذكية.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-user-md"></i>
+                        <h3>استشارات عن بعد</h3>
+                        <p>تواصل مع الأطباء عن بعد للحصول على توجيهات واستشارات.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-lock"></i>
+                        <h3>خصوصية وأمان تام</h3>
+                        <p>نضمن السرية التامة لبياناتك الصحية بأعلى مستويات الحماية.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="subscription" class="subscription-section">
+            <div class="container">
+                <h2>خطط الاشتراك</h2>
+                <p class="subtitle">استفد من فترة تجريبية مجانية لمدة 30 يومًا، ثم اختر خطة الاشتراك المناسبة لك.</p>
+                <div class="pricing-grid">
+                    <div class="price-card">
+                        <h3>الخطة الشهرية</h3>
+                        <p class="price">سعر رمزي / الشهر</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> جميع الميزات</li>
+                            <li><i class="fas fa-check-circle"></i> ملف طبي عائلي</li>
+                            <li><i class="fas fa-check-circle"></i> دعم فني</li>
+                        </ul>
+                        <button class="btn secondary-btn">اشترك الآن</button>
+                    </div>
+                    <div class="price-card featured">
+                        <h3>الخطة السنوية</h3>
+                        <p class="price">سعر رمزي / السنة</p>
+                        <p class="save">توفير كبير!</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> جميع الميزات</li>
+                            <li><i class="fas fa-check-circle"></i> ملف طبي عائلي</li>
+                            <li><i class="fas fa-check-circle"></i> دعم فني مميز</li>
+                            <li><i class="fas fa-check-circle"></i> أولوية في الاستشارات</li>
+                        </ul>
+                        <button class="btn cta-btn">اشترك الآن</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="map" class="map-section">
+            <div class="container">
+                <h2>تحديد مواقع المؤسسات الصحية</h2>
+                <div id="map-container">
+                    <p>سيتم تحميل الخريطة هنا لتحديد مواقع المستشفيات والعيادات.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2>تواصل معنا</h2>
+                <p>لديك أسئلة؟ يسعدنا مساعدتك.</p>
+                <form class="contact-form">
+                    <input type="text" placeholder="اسمك الكامل" required id="contactName"> <input type="email" placeholder="البريد الإلكتروني" required id="contactEmail"> <textarea placeholder="رسالتك" rows="5" required id="contactMessage"></textarea> <button type="submit" class="btn primary-btn">إرسال الرسالة</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#features">ميزاتنا</a></li>
+                        <li><a href="#map">الخرائط</a></li>
+                        <li><a href="#subscription">الاشتراك</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>تابعنا</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>معلومات الاتصال</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> الجزائر</p>
+                    <p><i class="fas fa-envelope"></i> info@yourhealthapp.dz</p>
+                    <p><i class="fas fa-phone"></i> +213 XXXXXXXXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 نظام المساعدة والتوجيه الصحي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="registrationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeRegistrationModal()">&times;</span>
+            <h2 id="modalTitle">سجل الآن مجانًا</h2> <form class="registration-form" id="registrationForm">
+                <p>ابدأ تجربتك المجانية لمدة 30 يومًا.</p>
+                <input type="text" placeholder="الاسم الأول" required id="registrationFirstName">
+                <input type="text" placeholder="اللقب" required id="registrationLastName">
+                <input type="date" placeholder="تاريخ الميلاد" required id="registrationDOB">
+                <select required id="registrationWilaya">
+                    <option value="">اختر الولاية</option>
+                    </select>
+                <input type="email" placeholder="البريد الإلكتروني" required id="registrationEmail">
+                <input type="password" placeholder="كلمة المرور" required id="registrationPassword">
+                <div class="social-login">
+                    <p>أو سجل بواسطة:</p>
+                    <button type="button" class="btn social-btn facebook"><i class="fab fa-facebook"></i> فيسبوك</button>
+                    <button type="button" class="btn social-btn twitter"><i class="fab fa-twitter"></i> تويتر</button>
+                    <button type="button" class="btn social-btn email"><i class="fas fa-envelope"></i> بريد إلكتروني</button>
+                </div>
+                <button type="submit" class="btn cta-btn">إنشاء حساب</button>
+                <p class="login-link">لديك حساب بالفعل؟ <a href="#" onclick="showLoginForm()">سجل الدخول</a></p>
+            </form>
+
+            <form class="login-form" id="loginForm" style="display: none;">
+                <h2>تسجيل الدخول</h2>
+                <p>أدخل بيانات اعتمادك لتسجيل الدخول.</p>
+                <input type="email" placeholder="البريد الإلكتروني" required id="loginEmail">
+                <input type="password" placeholder="كلمة المرور" required id="loginPassword">
+                <button type="submit" class="btn cta-btn">تسجيل الدخول</button>
+                <p class="registration-link">ليس لديك حساب؟ <a href="#" onclick="showRegistrationForm()">سجل الآن</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
